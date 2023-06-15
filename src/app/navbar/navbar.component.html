@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a style="margin-left: 1rem; text-transform: uppercase;" class="navbar-brand" routerLink="/">Gestion
+            Commande</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div style="margin-left: 5rem;" class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink="/commandes">
+                        Mon panier
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="http://localhost:4201">
+                        Application A
+                    </a>
+                </li>
+            </ul>
+            <div style="display: flex;justify-content: flex-end; padding-right: 2rem;">
+                <a class="navbar-brand" routerLink="/"><span style="font-size: 14px;"></span></a>
+                <!-- En cas si un user est connecter -->
+                <div class="dropdown mx-3" *ngIf="securityService.profile;else logiTemplate">
+                    <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{securityService.profile.firstName}}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" style="cursor: pointer;">Mon Profil</a></li>
+                        <li><a class="dropdown-item" style="cursor: pointer;" (click)="onLogout()">Déconnexion</a></li>
+                    </ul>
+                </div>
+                <!-- En ca si un user n'est pas connecter -->
+                <ng-template #logiTemplate class="dropdown">
+                    <button class="btn btn-secondary" (click)="login()" type="button">
+                        Connexion
+                    </button>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</nav>
